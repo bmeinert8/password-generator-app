@@ -97,10 +97,12 @@ body {
   min-height: 100vh;
   font-family: 'JetBrains Mono', monospace;
   background-color: var(--Grey950);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Typography */
-
 .text-preset-1 {
   font-size: 32px;
   font-weight: bold;
