@@ -127,3 +127,59 @@ body {
   line-height: 20px;
   letter-spacing: 0px;
 }
+
+/* General Styles */
+.main-container,
+.section-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main-container {
+  width: 343px;
+}
+
+.title-text {
+  color: var(--Grey600);
+  text-align: center;
+}
+
+.password-display-container,
+.password-generate-container {
+  background-color: var(--Grey800);
+  width: 100%;
+}
+
+.password-display {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.password-display-text {
+  color: var(--Grey700);
+}
+
+.generate-content-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.character-count-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+
+.generator-text {
+  color: var(--White);
+}
+
+.character-number {
+  color: var(--Green);
+}
