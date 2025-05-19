@@ -359,4 +359,9 @@ input[type='checkbox']:checked + .checkbox::after {
   .generate-content-container {
     padding: 32px;
   }
+
+  .generate-btn {
+    padding: 24px;
+    font-size: 18px;
+  }
 }
