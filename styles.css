@@ -145,6 +145,7 @@ body {
   text-align: center;
 }
 
+/* Password display container */
 .password-display-container,
 .password-generate-container {
   background-color: var(--Grey800);
@@ -182,12 +183,14 @@ body {
 }
 
 .label-text {
-  color: var(--White);
+  color: var(--Grey200);
 }
 
 .count-text {
   color: var(--Green);
 }
+
+/* Range slider styling */
 
 input[type='range'] {
   appearance: none;
@@ -234,4 +237,32 @@ input[type='range']::-moz-range-thumb:hover {
 input[type='range']:focus-visible::-webkit-slider-thumb {
   outline: 2px solid var(--Green);
   outline-offset: -2px;
+}
+
+/* Checkbox style */
+.checkbox {
+  position: relative;
+  padding-left: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--Grey200);
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+input[type='checkbox']:checked + .checkbox::after {
+  border: 2px solid var(--Green); /*changes border color when checked*/
+  background-color: var(--Green); /*changes background color when checked*/
+  background-image: url(./images/icon-check.svg); /* adds checkmark icon */
+  background-repeat: no-repeat;
+  background-position: center;
 }
