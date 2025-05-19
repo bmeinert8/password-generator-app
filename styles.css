@@ -266,3 +266,58 @@ input[type='checkbox']:checked + .checkbox::after {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+/*Generate password container*/
+.generate-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.strength-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--Grey850);
+  padding: 16px;
+}
+
+.strength-text {
+  color: var(--Grey600);
+  text-transform: uppercase;
+}
+
+.strength-bar-container {
+  display: flex;
+  gap: 8px;
+}
+
+.strength-bar {
+  width: 10px;
+  height: 28px;
+  border: 2px solid var(--Grey200);
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--Green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.generate-btn:hover {
+  background-color: transparent;
+  outline: 2px solid var(--Green);
+  color: var(--Green);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  .arrow {
+    filter: invert(82%) sepia(41%) saturate(341%) hue-rotate(70deg)
+      brightness(101%) contrast(106%);
+  }
+}

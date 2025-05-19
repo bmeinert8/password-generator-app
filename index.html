@@ -64,13 +64,17 @@
               <ul>
                 <li>
                   <input type="checkbox" id="uppercase" />
-                  <label for="uppercase" class="text-preset-4 label-text checkbox"
+                  <label
+                    for="uppercase"
+                    class="text-preset-4 label-text checkbox"
                     >Include Uppercase Letters</label
                   >
                 </li>
                 <li>
                   <input type="checkbox" id="lowercase" />
-                  <label for="lowercase" class="text-preset-4 label-text checkbox"
+                  <label
+                    for="lowercase"
+                    class="text-preset-4 label-text checkbox"
                     >Include Lowercase Letters</label
                   >
                 </li>
@@ -88,7 +92,27 @@
                 </li>
               </ul>
             </div>
-            <div class="generate-container"></div>
+            <div class="generate-container">
+              <div class="strength-container">
+                <div class="strength-indicator">
+                  <h2 class="text-preset-4 strength-text">Strength</h2>
+                  <div class="strength-bar-container">
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                    <div class="strength-bar"></div>
+                  </div>
+                </div>
+              </div>
+              <button class="generate-btn text-preset-4">
+                Generate
+                <img
+                  src="./images/icon-arrow-right.svg"
+                  alt="arrow"
+                  class="arrow"
+                />
+              </button>
+            </div>
           </div>
         </article>
       </section>
