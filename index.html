@@ -25,11 +25,11 @@
           <div class="password-display">
             <input
               type="text"
-              class="password-display-text text-preset-2"
+              class="password-display-text text-preset-2 js-password-input"
               placeholder="P4$5W0rD!"
               readonly
             />
-            <button class="copy-btn">
+            <button class="copy-btn js-copy-btn">
               <img src="./images/icon-copy.svg" alt="Copy Password" />
             </button>
           </div>
@@ -41,10 +41,11 @@
                 <label for="character-count" class="text-preset-4 label-text"
                   >Character Length</label
                 >
-                <p class="text-preset-2 count-text">0</p>
+                <p class="text-preset-2 count-text js-count-number">0</p>
               </div>
               <input
                 type="range"
+                class="js-range-slider"
                 id="customRange"
                 min="0"
                 max="20"
@@ -63,30 +64,50 @@
             <div class="parameter-container">
               <ul>
                 <li>
-                  <input type="checkbox" id="uppercase" />
+                  <input
+                    type="checkbox"
+                    id="uppercase"
+                    class="js-checkbox-input"
+                  />
                   <label
                     for="uppercase"
-                    class="text-preset-4 label-text checkbox"
+                    class="text-preset-4 label-text checkbox js-checkbox"
                     >Include Uppercase Letters</label
                   >
                 </li>
                 <li>
-                  <input type="checkbox" id="lowercase" />
+                  <input
+                    type="checkbox"
+                    id="lowercase"
+                    class="js-checkbox-input"
+                  />
                   <label
                     for="lowercase"
-                    class="text-preset-4 label-text checkbox"
+                    class="text-preset-4 label-text checkbox js-checkbox"
                     >Include Lowercase Letters</label
                   >
                 </li>
                 <li>
-                  <input type="checkbox" id="numbers" />
-                  <label for="numbers" class="text-preset-4 label-text checkbox"
+                  <input
+                    type="checkbox"
+                    id="numbers"
+                    class="js-checkbox-input"
+                  />
+                  <label
+                    for="numbers"
+                    class="text-preset-4 label-text checkbox js-checkbox"
                     >Include Numbers</label
                   >
                 </li>
                 <li>
-                  <input type="checkbox" id="symbols" />
-                  <label for="symbols" class="text-preset-4 label-text checkbox"
+                  <input
+                    type="checkbox"
+                    id="symbols"
+                    class="js-checkbox-input"
+                  />
+                  <label
+                    for="symbols"
+                    class="text-preset-4 label-text checkbox js-checkbox"
                     >Include Symbols</label
                   >
                 </li>
@@ -94,17 +115,18 @@
             </div>
             <div class="generate-container">
               <div class="strength-container">
-                <div class="strength-indicator">
+                <div class="strength-indicator js-strength-container">
                   <h2 class="text-preset-4 strength-text">Strength</h2>
                   <div class="strength-bar-container">
-                    <div class="strength-bar"></div>
-                    <div class="strength-bar"></div>
-                    <div class="strength-bar"></div>
-                    <div class="strength-bar"></div>
+                    <span class="js-strength-level"></span>
+                    <div class="strength-bar js-strength-bar"></div>
+                    <div class="strength-bar js-strength-bar"></div>
+                    <div class="strength-bar js-strength-bar"></div>
+                    <div class="strength-bar js-strength-bar"></div>
                   </div>
                 </div>
               </div>
-              <button class="generate-btn text-preset-4">
+              <button class="generate-btn text-preset-4 js-generate-btn">
                 Generate
                 <img
                   src="./images/icon-arrow-right.svg"

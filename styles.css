@@ -244,6 +244,11 @@ input[type='range']:focus-visible::-webkit-slider-thumb {
 }
 
 /* Checkbox style */
+
+input[type='checkbox'] {
+  display: none;
+}
+
 .checkbox {
   position: relative;
   padding-left: 2.5rem;
