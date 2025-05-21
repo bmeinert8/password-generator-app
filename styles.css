@@ -276,6 +276,10 @@ input[type='checkbox']:checked + .checkbox::after {
   background-position: center;
 }
 
+li {
+  margin-bottom: 8px;
+}
+
 /*Generate password container*/
 .generate-container {
   display: flex;
@@ -355,6 +359,10 @@ input[type='checkbox']:checked + .checkbox::after {
 
   .input-label-container {
     margin-bottom: 32px;
+  }
+
+  .strength-indicator {
+    padding: 24px;
   }
 
   .generate-container {
