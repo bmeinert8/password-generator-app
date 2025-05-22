@@ -17,3 +17,8 @@ const generateButton = document.querySelector('.js-generate-btn');
 characterSlider.addEventListener('input', (e) => {
   characterCount.textContent = e.target.value;
 });
+
+console.log(checkboxUppercase.checked);
+console.log(checkboxLowercase.checked);
+console.log(checkboxNumbers.checked);
+console.log(checkboxSymbols.checked);
