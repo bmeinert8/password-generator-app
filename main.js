@@ -22,3 +22,43 @@ console.log(checkboxUppercase.checked);
 console.log(checkboxLowercase.checked);
 console.log(checkboxNumbers.checked);
 console.log(checkboxSymbols.checked);
+
+const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+const numbers = '0123456789';
+const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+
+function generatePassword() {
+  let password = '';
+  let passwordLength = characterSlider.value;
+
+  if (checkboxUppercase.checked === true) {
+    password += upperCaseLetters;
+  }
+
+  if (checkboxLowercase.checked === true) {
+    password += lowerCaseLetters;
+  }
+
+  if (checkboxNumbers.checked === true) {
+    password += numbers;
+  }
+
+  if (checkboxSymbols.checked === true) {
+    password += symbols;
+  }
+
+  let finalPassword = '';
+
+  for (let i = 0; i < passwordLength; i++) {
+    const randomIndex = Math.floor(Math.random() * password.length);
+    finalPassword += password[randomIndex];
+  }
+
+  console.log(finalPassword);
+  return finalPassword;
+}
+
+generateButton.addEventListener('click', () => {
+  passwordInput.value = generatePassword();
+});
