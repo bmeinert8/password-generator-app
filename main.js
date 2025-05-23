@@ -31,26 +31,63 @@ const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
 function generatePassword() {
   let password = '';
   let passwordLength = characterSlider.value;
+  let charTypes = 0;
 
-  if (checkboxUppercase.checked === true) {
+  if (checkboxUppercase.checked) {
     password += upperCaseLetters;
+    charTypes ++;
   }
 
-  if (checkboxLowercase.checked === true) {
+  if (checkboxLowercase.checked) {
     password += lowerCaseLetters;
+    charTypes ++;
   }
 
-  if (checkboxNumbers.checked === true) {
+  if (checkboxNumbers.checked) {
     password += numbers;
+    charTypes++;
   }
 
-  if (checkboxSymbols.checked === true) {
+  if (checkboxSymbols.checked) {
     password += symbols;
+    charTypes++;
   }
 
   if (password.length === 0) {
     alert('please select at least one character type');
     return '';
+  }
+
+  console.log(charTypes);
+
+let passwordStrength = '';
+let strengthLevel = 0; // To determine number of bars (1-4)
+
+if (charTypes === 4 || (charTypes === 3 && passwordLength >= 12)) {
+  passwordStrength = 'Strong';
+  strengthLevel = 4;
+} else if ((charTypes === 3 && passwordLength >= 8) || (charTypes === 2 && passwordLength >= 10)) {
+  passwordStrength = 'Medium';
+  strengthLevel = 3;
+} else if ((charTypes === 2 && passwordLength < 10) || (charTypes === 3 && passwordLength < 8)) {
+  passwordStrength = 'Weak';
+  strengthLevel = 2;
+} else if (charTypes < 2) { // Length check not needed since min is 6
+  passwordStrength = 'Too Weak!';
+  strengthLevel = 1;
+}
+
+console.log(passwordStrength, 'Level:', strengthLevel);
+
+strengthText.textContent = passwordStrength.toUpperCase();
+
+strengthBar.forEach(bar => {
+    bar.classList.remove('bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green');
+  });
+
+  const colors = ['bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green'];
+  for (let i = 0; i < strengthLevel; i++) {
+    strengthBar[i].classList.add(colors[i]);
   }
 
   let finalPassword = '';
