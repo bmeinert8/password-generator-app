@@ -48,6 +48,11 @@ function generatePassword() {
     password += symbols;
   }
 
+  if (password.length === 0) {
+    alert('please select at least one character type');
+    return '';
+  }
+
   let finalPassword = '';
 
   for (let i = 0; i < passwordLength; i++) {
