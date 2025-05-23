@@ -67,3 +67,15 @@ function generatePassword() {
 generateButton.addEventListener('click', () => {
   passwordInput.value = generatePassword();
 });
+
+copyButton.addEventListener('click', () => {
+  const passwordToCopy = passwordInput.value;
+
+  navigator.clipboard.writeText(passwordToCopy)
+    .then(() => {
+      alert('Copied to clipboard');
+    })
+    .catch((err) => {
+      console.log('Copy failed', err);
+    });
+});
