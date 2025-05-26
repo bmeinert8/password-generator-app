@@ -6,6 +6,7 @@ const checkboxUppercase = document.getElementById('uppercase');
 const checkboxLowercase = document.getElementById('lowercase');
 const checkboxNumbers = document.getElementById('numbers');
 const checkboxSymbols = document.getElementById('symbols');
+const checkboxContainer = document.querySelector('.js-checkbox-container');
 const strengthIndicatorContainer = document.querySelector(
   '.js-strength-container'
 );
@@ -43,27 +44,24 @@ const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
 const numbers = '0123456789';
 const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
 
+const characterSets = [
+  { checkbox: checkboxUppercase, characters: upperCaseLetters },
+  { checkbox: checkboxLowercase, characters: lowerCaseLetters },
+  { checkbox: checkboxNumbers, characters: numbers},
+  { checkbox: checkboxSymbols, characters: symbols},
+];
+
 function generatePassword() {
   let password = '';
   let passwordLength = characterSlider.value;
   let charTypes = 0;
 
-  if (checkboxUppercase.checked) {
-    password += upperCaseLetters;
-    charTypes++;
-  }
-  if (checkboxLowercase.checked) {
-    password += lowerCaseLetters;
-    charTypes++;
-  }
-  if (checkboxNumbers.checked) {
-    password += numbers;
-    charTypes++;
-  }
-  if (checkboxSymbols.checked) {
-    password += symbols;
-    charTypes++;
-  }
+  characterSets.forEach(({ checkbox, characters }) => {
+    if (checkbox.checked) {
+      password += characters;
+      charTypes++;
+    }
+  });
 
   if (password.length === 0) {
     alert('please select at least one character type');
