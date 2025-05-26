@@ -14,30 +14,27 @@ const strengthText = document.querySelector('.js-strength-level');
 const strengthBar = document.querySelectorAll('.js-strength-bar');
 const generateButton = document.querySelector('.js-generate-btn');
 
+//Slider constants
+const MIN = 6;
+const MAX = 20;
+const FILLED_COLOR = '#A4FFAF';
+const UNFILLED_COLOR = '#000000';
+
+// Function to update slider fill
+function updateSliderFill(value) {
+  const percentage = ((value - MIN) / (MAX - MIN)) * 100;
+  characterSlider.style.background = `linear-gradient(to right, ${FILLED_COLOR} ${percentage}%, ${UNFILLED_COLOR} ${percentage}%`;
+}
+
 //Inital fill of task bar on page load
-const min = 6;
-  const max = 20;
-  const initialValue = characterSlider.value; // Default is 10
-  const initialPercentage = ((initialValue - min) / (max - min)) * 100;
-  characterSlider.style.background = `linear-gradient(to right, #A4FFAF ${initialPercentage}%, #24232C ${initialPercentage}%)`;
+updateSliderFill(characterSlider.value);
 
 // Event Listener on slider bar to update the character count display on the UI
 characterSlider.addEventListener('input', (e) => {
-  characterCount.textContent = e.target.value;
-
-  const min = 6;
-  const max = 20;
   const value = e.target.value;
-  const percentage = ((value - min) / (max - min)) * 100;
-
-  // Apply linear gradient
-  characterSlider.style.background = `linear-gradient(to right, #A4FFAF ${percentage}%, #24232C ${percentage}%)`;
+  characterCount.textContent = value;
+  updateSliderFill(value);
 });
-
-console.log(checkboxUppercase.checked);
-console.log(checkboxLowercase.checked);
-console.log(checkboxNumbers.checked);
-console.log(checkboxSymbols.checked);
 
 const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
