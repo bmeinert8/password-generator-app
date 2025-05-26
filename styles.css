@@ -10,7 +10,7 @@
   --Grey200: #e6e5ea;
   --Green: #a4ffaf;
   --Yellow: #f8cd65;
-  --Oragne: #fb7c58;
+  --Orange: #fb7c58;
   --Red: #f64a4a;
 }
 
@@ -305,10 +305,36 @@ li {
   gap: 8px;
 }
 
+.strength-level-text {
+  color: white;
+  margin-right: 8px;
+  align-self: center;
+}
+
 .strength-bar {
   width: 10px;
   height: 28px;
   border: 2px solid var(--Grey200);
+}
+
+.bar-filled-red {
+  background-color: var(--Red);
+  border: none;
+}
+
+.bar-filled-orange {
+  background-color: var(--Orange);
+  border: none;
+}
+
+.bar-filled-yellow {
+  background-color: var(--Yellow);
+  border: none;
+}
+
+.bar-filled-green{
+  background-color: var(--Green);
+  border: none;
 }
 
 .generate-btn {
