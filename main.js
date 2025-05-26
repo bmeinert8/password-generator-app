@@ -50,19 +50,16 @@ function generatePassword() {
 
   if (checkboxUppercase.checked) {
     password += upperCaseLetters;
-    charTypes ++;
+    charTypes++;
   }
-
   if (checkboxLowercase.checked) {
     password += lowerCaseLetters;
-    charTypes ++;
+    charTypes++;
   }
-
   if (checkboxNumbers.checked) {
     password += numbers;
     charTypes++;
   }
-
   if (checkboxSymbols.checked) {
     password += symbols;
     charTypes++;
@@ -70,54 +67,62 @@ function generatePassword() {
 
   if (password.length === 0) {
     alert('please select at least one character type');
-    return '';
-  }
-
-  console.log(charTypes);
-
-let passwordStrength = '';
-let strengthLevel = 0; // To determine number of bars (1-4)
-
-if (charTypes === 4 || (charTypes === 3 && passwordLength >= 12)) {
-  passwordStrength = 'Strong';
-  strengthLevel = 4;
-} else if ((charTypes === 3 && passwordLength >= 8) || (charTypes === 2 && passwordLength >= 10)) {
-  passwordStrength = 'Medium';
-  strengthLevel = 3;
-} else if ((charTypes === 2 && passwordLength < 10) || (charTypes === 3 && passwordLength < 8)) {
-  passwordStrength = 'Weak';
-  strengthLevel = 2;
-} else if (charTypes < 2) { // Length check not needed since min is 6
-  passwordStrength = 'Too Weak!';
-  strengthLevel = 1;
-}
-
-console.log(passwordStrength, 'Level:', strengthLevel);
-
-strengthText.textContent = passwordStrength.toUpperCase();
-
-strengthBar.forEach(bar => {
-    bar.classList.remove('bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green');
-  });
-
-  const colors = ['bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green'];
-  for (let i = 0; i < strengthLevel; i++) {
-    strengthBar[i].classList.add(colors[i]);
+    return { password: '', charTypes: 0, passwordLength };
   }
 
   let finalPassword = '';
-
   for (let i = 0; i < passwordLength; i++) {
     const randomIndex = Math.floor(Math.random() * password.length);
     finalPassword += password[randomIndex];
   }
 
   console.log(finalPassword);
-  return finalPassword;
+  return { password: finalPassword, charTypes, passwordLength };
+}
+
+function updateStrength(charTypes, passwordLength) {
+  let passwordStrength = '';
+  let strengthLevel = 0;
+
+  if (charTypes === 4 || (charTypes === 3 && passwordLength >= 12)) {
+    passwordStrength = 'Strong';
+    strengthLevel = 4;
+  } else if ((charTypes === 3 && passwordLength >=8) || (charTypes === 2 && passwordLength >= 10)) {
+    passwordStrength = 'Medium';
+    strengthLevel = 3;
+  } else if ((charTypes === 2 && passwordLength < 10) || (charTypes === 3 && passwordLength < 8)) {
+    passwordStrength = 'Weak';
+    strengthLevel = 2;
+  } else if (charTypes < 2) {
+    passwordStrength = 'Too Week!';
+    strengthLevel = 1;
+  }
+
+  console.log(passwordStrength, 'Level:', strengthLevel);
+
+  strengthText.textContent = passwordStrength.toUpperCase();
+
+  strengthBar.forEach( bar => {
+    bar.classList.remove('bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green');
+  });
+
+  const colors = ['bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green'];
+  for( let i = 0; i < strengthLevel; i++) {
+    strengthBar[i].classList.add(colors[i]);
+  }
 }
 
 generateButton.addEventListener('click', () => {
-  passwordInput.value = generatePassword();
+  const { password, charTypes, passwordLength } = generatePassword();
+  passwordInput.value = password;
+  if (password !== '') {
+    updateStrength(charTypes, passwordLength);
+  } else {
+    strengthText.textContent = '';
+    strengthBar.forEach(bar => {
+      bar.classList.remove('bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green');
+    });
+  }
 });
 
 copyButton.addEventListener('click', () => {
