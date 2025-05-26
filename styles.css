@@ -159,7 +159,7 @@ body {
 }
 
 .password-display-text {
-  color: var(--Grey700);
+  color: var(--Grey200);
 }
 
 .copy-btn:hover {
