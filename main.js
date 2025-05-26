@@ -13,6 +13,8 @@ const strengthIndicatorContainer = document.querySelector(
 const strengthText = document.querySelector('.js-strength-level');
 const strengthBar = document.querySelectorAll('.js-strength-bar');
 const generateButton = document.querySelector('.js-generate-btn');
+const modal = document.getElementById('errorModal');
+const closeBtn = document.querySelector('.modal-close-btn');
 
 //Slider constants
 const MIN = 6;
@@ -34,6 +36,11 @@ characterSlider.addEventListener('input', (e) => {
   const value = e.target.value;
   characterCount.textContent = value;
   updateSliderFill(value);
+});
+
+// Close modal when the close button is clicked
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('show');
 });
 
 const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -61,7 +68,7 @@ function generatePassword() {
   });
 
   if (password.length === 0) {
-    alert('please select at least one character type');
+    showModal('Please select at least one character type');
     return { password: '', charTypes: 0, passwordLength };
   }
 
@@ -105,6 +112,13 @@ function updateStrength(charTypes, passwordLength) {
   for( let i = 0; i < strengthLevel; i++) {
     strengthBar[i].classList.add(colors[i]);
   }
+}
+
+// Show the modal with a given message
+function showModal(message) {
+  const modalMessage = modal.querySelector('.modal-message');
+  modalMessage.textContent = message;
+  modal.classList.add('show');
 }
 
 generateButton.addEventListener('click', () => {
