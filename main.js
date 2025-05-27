@@ -13,8 +13,6 @@ const strengthIndicatorContainer = document.querySelector(
 const strengthText = document.querySelector('.js-strength-level');
 const strengthBar = document.querySelectorAll('.js-strength-bar');
 const generateButton = document.querySelector('.js-generate-btn');
-const modal = document.getElementById('errorModal');
-const closeBtn = document.querySelector('.modal-close-btn');
 
 //Slider constants
 const MIN = 6;
@@ -22,39 +20,51 @@ const MAX = 20;
 const FILLED_COLOR = '#A4FFAF';
 const UNFILLED_COLOR = '#000000';
 
-// Function to update slider fill
-function updateSliderFill(value) {
-  const percentage = ((value - MIN) / (MAX - MIN)) * 100;
-  characterSlider.style.background = `linear-gradient(to right, ${FILLED_COLOR} ${percentage}%, ${UNFILLED_COLOR} ${percentage}%`;
-}
+// Character sets for password generation
+const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+const numbers = '0123456789';
+const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
 
-//Inital fill of task bar on page load
+// Configuration array for checkboxes and their character sets
+const characterSets = [
+  { checkbox: checkboxUppercase, characters: upperCaseLetters },
+  { checkbox: checkboxLowercase, characters: lowerCaseLetters },
+  { checkbox: checkboxNumbers, characters: numbers },
+  { checkbox: checkboxSymbols, characters: symbols },
+];
+
+// Event Listeners
+// Inital fill of task bar on page load with default value (10)
 updateSliderFill(characterSlider.value);
 
-// Event Listener on slider bar to update the character count display on the UI
+// Update character count and slider fill when the slider value changes
 characterSlider.addEventListener('input', (e) => {
   const value = e.target.value;
   characterCount.textContent = value;
   updateSliderFill(value);
 });
 
-// Close modal when the close button is clicked
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('show');
+// Prevent unchecking all checkboxes
+characterSets.forEach(({ checkbox }) => {
+  checkbox.addEventListener('change', (e) => {
+    const checkedCount = characterSets.filter(
+      (set) => set.checkbox.checked
+    ).length;
+    if (checkedCount === 0) {
+      e.target.checked = true; // Revert the change
+    }
+  });
 });
 
-const upperCaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-const numbers = '0123456789';
-const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+// Functions
+// Function to update slider fill
+function updateSliderFill(value) {
+  const percentage = ((value - MIN) / (MAX - MIN)) * 100;
+  characterSlider.style.background = `linear-gradient(to right, ${FILLED_COLOR} ${percentage}%, ${UNFILLED_COLOR} ${percentage}%`;
+}
 
-const characterSets = [
-  { checkbox: checkboxUppercase, characters: upperCaseLetters },
-  { checkbox: checkboxLowercase, characters: lowerCaseLetters },
-  { checkbox: checkboxNumbers, characters: numbers},
-  { checkbox: checkboxSymbols, characters: symbols},
-];
-
+// Generate password based on selecter character types and length
 function generatePassword() {
   let password = '';
   let passwordLength = characterSlider.value;
@@ -67,11 +77,6 @@ function generatePassword() {
     }
   });
 
-  if (password.length === 0) {
-    showModal('Please select at least one character type');
-    return { password: '', charTypes: 0, passwordLength };
-  }
-
   let finalPassword = '';
   for (let i = 0; i < passwordLength; i++) {
     const randomIndex = Math.floor(Math.random() * password.length);
@@ -82,6 +87,7 @@ function generatePassword() {
   return { password: finalPassword, charTypes, passwordLength };
 }
 
+// Update the strength indicator UI based on character types and length
 function updateStrength(charTypes, passwordLength) {
   let passwordStrength = '';
   let strengthLevel = 0;
@@ -89,10 +95,16 @@ function updateStrength(charTypes, passwordLength) {
   if (charTypes === 4 || (charTypes === 3 && passwordLength >= 12)) {
     passwordStrength = 'Strong';
     strengthLevel = 4;
-  } else if ((charTypes === 3 && passwordLength >=8) || (charTypes === 2 && passwordLength >= 10)) {
+  } else if (
+    (charTypes === 3 && passwordLength >= 8) ||
+    (charTypes === 2 && passwordLength >= 10)
+  ) {
     passwordStrength = 'Medium';
     strengthLevel = 3;
-  } else if ((charTypes === 2 && passwordLength < 10) || (charTypes === 3 && passwordLength < 8)) {
+  } else if (
+    (charTypes === 2 && passwordLength < 10) ||
+    (charTypes === 3 && passwordLength < 8)
+  ) {
     passwordStrength = 'Weak';
     strengthLevel = 2;
   } else if (charTypes < 2) {
@@ -104,40 +116,39 @@ function updateStrength(charTypes, passwordLength) {
 
   strengthText.textContent = passwordStrength.toUpperCase();
 
-  strengthBar.forEach( bar => {
-    bar.classList.remove('bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green');
+  strengthBar.forEach((bar) => {
+    bar.classList.remove(
+      'bar-filled-red',
+      'bar-filled-orange',
+      'bar-filled-yellow',
+      'bar-filled-green'
+    );
   });
 
-  const colors = ['bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green'];
-  for( let i = 0; i < strengthLevel; i++) {
+  const colors = [
+    'bar-filled-red',
+    'bar-filled-orange',
+    'bar-filled-yellow',
+    'bar-filled-green',
+  ];
+  for (let i = 0; i < strengthLevel; i++) {
     strengthBar[i].classList.add(colors[i]);
   }
 }
 
-// Show the modal with a given message
-function showModal(message) {
-  const modalMessage = modal.querySelector('.modal-message');
-  modalMessage.textContent = message;
-  modal.classList.add('show');
-}
-
+// Handle the generate button click to create and display a new password
 generateButton.addEventListener('click', () => {
   const { password, charTypes, passwordLength } = generatePassword();
   passwordInput.value = password;
-  if (password !== '') {
-    updateStrength(charTypes, passwordLength);
-  } else {
-    strengthText.textContent = '';
-    strengthBar.forEach(bar => {
-      bar.classList.remove('bar-filled-red', 'bar-filled-orange', 'bar-filled-yellow', 'bar-filled-green');
-    });
-  }
+  updateStrength(charTypes, passwordLength);
 });
 
+// Handle copy button click to copy pasword to clipboard
 copyButton.addEventListener('click', () => {
   const passwordToCopy = passwordInput.value;
 
-  navigator.clipboard.writeText(passwordToCopy)
+  navigator.clipboard
+    .writeText(passwordToCopy)
     .then(() => {
       alert('Copied to clipboard');
     })
