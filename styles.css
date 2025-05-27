@@ -160,13 +160,29 @@ body {
 
 .password-display-text {
   color: var(--Grey200);
-  overflow: hidden;
-  text-overflow: elipsis;
+  width: 200px;
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.password-display-text::-webkit-scrollbar-thumb:hover {
+  display: none;
 }
 
 .placeholder {
   color: var(--Grey600);
+}
+
+.copied-text {
+  align-self: center;
+  color: var(--Green);
+}
+
+.hidden {
+  display: none;
 }
 
 .copy-btn {
@@ -401,6 +417,7 @@ li {
   .password-display-text {
     font-size: 2rem;
     line-height: 2.625rem;
+    width: 400px;
   }
 
   .label-text {

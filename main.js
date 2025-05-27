@@ -6,7 +6,7 @@ const checkboxUppercase = document.getElementById('uppercase');
 const checkboxLowercase = document.getElementById('lowercase');
 const checkboxNumbers = document.getElementById('numbers');
 const checkboxSymbols = document.getElementById('symbols');
-const checkboxContainer = document.querySelector('.js-checkbox-container');
+const copiedText = document.querySelector('.js-copied-text');
 const strengthIndicatorContainer = document.querySelector(
   '.js-strength-container'
 );
@@ -154,6 +154,7 @@ generateButton.addEventListener('click', () => {
   toggleCopyButton();
 });
 
+let copyTimeout;
 // Handle copy button click to copy pasword to clipboard
 copyButton.addEventListener('click', () => {
   const passwordToCopy = passwordInput.textContent;
@@ -161,7 +162,15 @@ copyButton.addEventListener('click', () => {
   navigator.clipboard
     .writeText(passwordToCopy)
     .then(() => {
-      alert('Copied to clipboard');
+      copiedText.classList.remove('hidden');
+
+      if (copyTimeout) {
+        clearTimeout(copyTimeout);
+      }
+
+      copyTimeout = setTimeout(() => {
+        copiedText.classList.add('hidden');
+      }, 2000);
     })
     .catch((err) => {
       console.log('Copy failed', err);
