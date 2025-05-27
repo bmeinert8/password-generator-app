@@ -160,6 +160,13 @@ body {
 
 .password-display-text {
   color: var(--Grey200);
+  overflow: hidden;
+  text-overflow: elipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--Grey600);
 }
 
 .copy-btn {

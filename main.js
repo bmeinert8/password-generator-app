@@ -62,7 +62,9 @@ characterSets.forEach(({ checkbox }) => {
 
 // Function to toggle the copy button state based on whether the password is empy
 function toggleCopyButton() {
-  copyButton.disabled = !passwordInput.value;
+  const isPlaceholder = passwordInput.classList.contains('placeholder');
+  const hasContent = passwordInput.textContent && !isPlaceholder;
+  copyButton.disabled = !hasContent;
 }
 
 // Function to update slider fill
@@ -146,14 +148,15 @@ function updateStrength(charTypes, passwordLength) {
 // Handle the generate button click to create and display a new password
 generateButton.addEventListener('click', () => {
   const { password, charTypes, passwordLength } = generatePassword();
-  passwordInput.value = password;
+  passwordInput.textContent = password;
+  passwordInput.classList.remove('placeholder');
   updateStrength(charTypes, passwordLength);
   toggleCopyButton();
 });
 
 // Handle copy button click to copy pasword to clipboard
 copyButton.addEventListener('click', () => {
-  const passwordToCopy = passwordInput.value;
+  const passwordToCopy = passwordInput.textContent;
 
   navigator.clipboard
     .writeText(passwordToCopy)
