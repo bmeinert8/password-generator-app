@@ -23,14 +23,17 @@
       <section class="section-card">
         <article class="password-display-container">
           <div class="password-display">
-            <input
-              type="text"
-              class="password-display-text text-preset-2 js-password-input"
-              placeholder="P4$5W0rD!"
-              readonly
-            />
+            <span
+              class="js-password-input password-display-text text-preset-2 placeholder"
+              >P4$5W0rD!</span
+            >
+            <span class="text-preset-4 copied-text hidden js-copied-text">copied</span>
             <button class="copy-btn js-copy-btn">
-              <img src="./images/icon-copy.svg" alt="Copy Password" />
+              <img
+                src="./images/icon-copy.svg"
+                alt="Copy Password"
+                class="copy"
+              />
             </button>
           </div>
         </article>
@@ -120,7 +123,9 @@
                 <div class="strength-indicator js-strength-container">
                   <h2 class="text-preset-4 strength-text">Strength</h2>
                   <div class="strength-bar-container">
-                    <span class="js-strength-level text-preset-3 strength-level-text"></span>
+                    <span
+                      class="js-strength-level text-preset-3 strength-level-text"
+                    ></span>
                     <div class="strength-bar js-strength-bar"></div>
                     <div class="strength-bar js-strength-bar"></div>
                     <div class="strength-bar js-strength-bar"></div>
@@ -141,14 +146,6 @@
         </article>
       </section>
     </main>
-
-      <!-- Modal for notifications -->
-    <div class="modal" id="errorModal">
-      <div class="modal-content">
-        <p class="modal-message">please select at least one character type</p>
-        <button class="modal-close-btn text-preset-4">Close</button>
-      </div>
-    </div>
     <script src="./main.js" defer></script>
   </body>
 </html>
