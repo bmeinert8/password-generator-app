@@ -160,7 +160,7 @@ body {
 
 .password-display-text {
   color: var(--Grey200);
-  width: 200px;
+  width: 12.5rem;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -417,7 +417,7 @@ li {
   .password-display-text {
     font-size: 2rem;
     line-height: 2.625rem;
-    width: 400px;
+    width: 25rem;
   }
 
   .label-text {
