@@ -162,8 +162,26 @@ body {
   color: var(--Grey200);
 }
 
-.copy-btn:hover {
+.copy-btn {
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.copy-btn:hover {
+  color: var(--Green);
+}
+
+.copy-btn:disabled {
+  color: var(--Grey600);
+  cursor: not-allowed;
+}
+
+.copy-btn:disabled .copy {
+  filter: grayscale(100%) brightness(0.7);
+}
+
+.copy-btn:disabled:hover {
+  color: var(--Grey600);
 }
 
 .generate-content-container {

@@ -37,6 +37,7 @@ const characterSets = [
 // Event Listeners
 // Inital fill of task bar on page load with default value (10)
 updateSliderFill(characterSlider.value);
+toggleCopyButton();
 
 // Update character count and slider fill when the slider value changes
 characterSlider.addEventListener('input', (e) => {
@@ -58,6 +59,12 @@ characterSets.forEach(({ checkbox }) => {
 });
 
 // Functions
+
+// Function to toggle the copy button state based on whether the password is empy
+function toggleCopyButton() {
+  copyButton.disabled = !passwordInput.value;
+}
+
 // Function to update slider fill
 function updateSliderFill(value) {
   const percentage = ((value - MIN) / (MAX - MIN)) * 100;
@@ -141,6 +148,7 @@ generateButton.addEventListener('click', () => {
   const { password, charTypes, passwordLength } = generatePassword();
   passwordInput.value = password;
   updateStrength(charTypes, passwordLength);
+  toggleCopyButton();
 });
 
 // Handle copy button click to copy pasword to clipboard
