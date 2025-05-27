@@ -38,12 +38,20 @@ const characterSets = [
 // Inital fill of task bar on page load with default value (10)
 updateSliderFill(characterSlider.value);
 toggleCopyButton();
+const initialCharTypes = characterSets.filter(
+  ({ checkbox }) => checkbox.checked
+).length;
+updateStrength(initialCharTypes, characterSlider.value);
 
 // Update character count and slider fill when the slider value changes
 characterSlider.addEventListener('input', (e) => {
   const value = e.target.value;
   characterCount.textContent = value;
   updateSliderFill(value);
+  const charTypes = characterSets.filter(
+    ({ checkbox }) => checkbox.checked
+  ).length;
+  updateStrength(charTypes, value); // Update strength based on slider value and checked checkboxes
 });
 
 // Prevent unchecking all checkboxes
@@ -53,7 +61,11 @@ characterSets.forEach(({ checkbox }) => {
       (set) => set.checkbox.checked
     ).length;
     if (checkedCount === 0) {
+      e.preventDefault();
       e.target.checked = true; // Revert the change
+    } else {
+      const charTypes = checkedCount;
+      updateStrength(charTypes, characterSlider.value);
     }
   });
 });
@@ -117,7 +129,7 @@ function updateStrength(charTypes, passwordLength) {
     passwordStrength = 'Weak';
     strengthLevel = 2;
   } else if (charTypes < 2) {
-    passwordStrength = 'Too Week!';
+    passwordStrength = 'Too Weak!';
     strengthLevel = 1;
   }
 
