@@ -27,7 +27,9 @@
               class="js-password-input password-display-text text-preset-2 placeholder"
               >P4$5W0rD!</span
             >
-            <span class="text-preset-4 copied-text hidden js-copied-text">copied</span>
+            <span class="text-preset-4 copied-text hidden js-copied-text"
+              >copied</span
+            >
             <button class="copy-btn js-copy-btn">
               <img
                 src="./images/icon-copy.svg"
@@ -133,16 +135,41 @@
                   </div>
                 </div>
               </div>
-              <button class="generate-btn text-preset-4 js-generate-btn">
-                Generate
-                <img
-                  src="./images/icon-arrow-right.svg"
-                  alt="arrow"
-                  class="arrow"
-                />
-              </button>
+              <div class="buttons-container">
+                <button class="generate-btn text-preset-4 js-generate-btn">
+                  Generate
+                  <img
+                    src="./images/icon-arrow-right.svg"
+                    alt="arrow"
+                    class="arrow"
+                  />
+                </button>
+                <button class="generate-btn text-preset-4 js-generate-btn">
+                  Save
+                </button>
+              </div>
+            </div>
+            <div class="view-pw-container">
+              <button class="view-pw-button">view passwords</button>
             </div>
           </div>
+        </article>
+      </section>
+      <section class="save-info-card">
+        <article class="save-info-container">
+          <form class="form-content-container">
+            <label for="password-name" class="pw-input-label"
+              >Password Profile Name</label
+            >
+            <input
+              type="text"
+              id="password-name"
+              name="password-name"
+              placeholder="name"
+              class="pw-input"
+            />
+            <button type="submit" class="save-form-button">save</button>
+          </form>
         </article>
       </section>
     </main>
