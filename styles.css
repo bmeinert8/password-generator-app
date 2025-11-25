@@ -443,6 +443,97 @@ li {
   cursor: pointer;
 }
 
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* When the overlay has the "hidden" helper-class it should be hidden;
+   keep this rule after .modal-overlay to ensure it wins. */
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+.save-info-card {
+  position: relative;
+  background-color: var(--Grey800);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 80%;
+  max-width: 400px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--Grey200);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--Green);
+}
+
+/* Ensure the success message respects the hidden helper class so it doesn't
+   show accidentally when other rules re-enable display. */
+.success-message.hidden {
+  display: none !important;
+}
+
+/* Saved Passwords Styles */
+.saved-item {
+  background-color: var(--Grey800);
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.saved-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.saved-name {
+  color: var(--Grey200);
+  flex: 1;
+}
+
+.saved-password {
+  color: var(--Grey200);
+  margin: 0 1rem;
+}
+
+.toggle-show-btn {
+  color: var(--Green);
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.copy-saved-btn {
+  cursor: pointer;
+}
+
+.copy-saved-btn:hover {
+  color: var(--Green);
+}
+
 /* Media Queries */
 @media (min-width: 768px) {
   .main-container {

@@ -20,7 +20,7 @@
   <body>
     <main class="main-container">
       <h1 class="text-preset-4 title-text">Password Generator</h1>
-      <section class="section-card">
+      <section class="section-card js-generator-section">
         <article class="password-display-container">
           <div class="password-display">
             <span
@@ -144,34 +144,50 @@
                     class="arrow"
                   />
                 </button>
-                <button class="generate-btn text-preset-4 js-generate-btn">
+                <button class="generate-btn text-preset-4 js-save-btn" disabled>
                   Save
                 </button>
               </div>
             </div>
             <div class="view-pw-container">
-              <button class="view-pw-button">view passwords</button>
+              <button class="view-pw-button js-view-pw-btn">
+                view passwords
+              </button>
             </div>
           </div>
         </article>
       </section>
-      <section class="save-info-card">
-        <article class="save-info-container">
-          <form class="form-content-container">
-            <label for="password-name" class="pw-input-label"
-              >Password Profile Name</label
-            >
-            <input
-              type="text"
-              id="password-name"
-              name="password-name"
-              placeholder="name"
-              class="pw-input"
-            />
-            <button type="submit" class="save-form-button">save</button>
-          </form>
-        </article>
+      <section class="section-card js-saved-section hidden">
+        <h2 class="text-preset-3 title-text">Saved Passwords</h2>
+        <ul class="js-saved-list"></ul>
+        <div class="view-pw-container">
+          <button class="view-pw-button js-back-btn">back to generator</button>
+        </div>
       </section>
+      <div class="modal-overlay js-modal-overlay hidden">
+        <section class="save-info-card js-save-modal">
+          <button class="modal-close-btn js-modal-close">&times;</button>
+          <article class="save-info-container">
+            <form class="form-content-container js-save-form">
+              <label for="password-name" class="pw-input-label"
+                >Password Profile Name</label
+              >
+              <input
+                type="text"
+                id="password-name"
+                name="password-name"
+                placeholder="name"
+                class="pw-input"
+                required
+              />
+              <button type="submit" class="save-form-button">save</button>
+            </form>
+            <div class="success-message js-success-message hidden">
+              <p>Saved successfully!</p>
+            </div>
+          </article>
+        </section>
+      </div>
     </main>
     <script src="./main.js" defer></script>
   </body>
